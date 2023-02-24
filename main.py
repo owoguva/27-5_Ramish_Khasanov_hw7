@@ -1,36 +1,52 @@
-from random import randint
-N = 10
-a = [randint(1, 10) for i in range(N)]
-print(a)
+def bubbleSort(array):
+    for i in range(len(array)):
+        for j in range(0, len(array) - i - 1):
+            if array[j] > array[j + 1]:
+                temp = array[j]
+                array[j] = array[j + 1]
+                array[j + 1] = temp
 
-for i in range(N-1):
-    for j in range(N-1-i):
-        if a[j] > a[j+1]:
-            a[j], a[j+1] = a[j+1], a[j]
-print(a)
 
-def binary_search(arr, x):
-    low = 0
-    high = len(arr) - 1
+Pos = [10, 29, 18, 17, 0, 2]
+bubbleSort(Pos)
 
-    while low <= high:
-        mid = (low + high) // 2
+print('Отсортированные числа:')
+print(Pos)
 
-        if arr[mid] < x:
-            low = mid + 1
-        elif arr[mid] > x:
-            high = mid - 1
+def binary_search(A, Val):
+    N = len(A)
+    ResultOk = False
+    First = 0
+    Last = N - 1
+
+    while First <= Last:
+        Middle = (First + Last) // 2
+        if A[Middle] == Val:
+            ResultOk = True
+            Pos = Middle
+            break
+        elif A[Middle] > Val:
+            Last = Middle - 1
         else:
-            return mid
+            First = Middle + 1
 
-    return -1
-x = 9
-index = binary_search(a, x)
+    if ResultOk:
+        print(f"Число {Val} найден\nПод индексом:")
+        print(Pos)
+    else:
+        print(f"Число {Val} не найдено")
 
-if index != -1:
-    print(f"Нашел {x} под индексом {index}")
-else:
-    print(f"{x} не удалось найти")
+Val = 29
+binary_search(Pos, Val)
+
+
+
+
+
+
+
+
+
 
 
 
